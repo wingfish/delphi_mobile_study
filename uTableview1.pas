@@ -50,6 +50,10 @@ type
     Chart3D1: TChart3D;
     Chart3DChart2: TChart;
     Chart3D2: TChart3D;
+    ActionList1: TActionList;
+    ChangeTabAction1: TChangeTabAction;
+    ChangeTabAction2: TChangeTabAction;
+    actAddItem: TAction;
     procedure ListBoxItem1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure actAddItemExecute(Sender: TObject);
