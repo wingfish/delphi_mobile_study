@@ -1,0 +1,120 @@
+object Form8: TForm8
+  Left = 0
+  Top = 0
+  Caption = 'Form8'
+  ClientHeight = 480
+  ClientWidth = 320
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [dkDesktop]
+  DesignerMobile = True
+  DesignerWidth = 320
+  DesignerHeight = 480
+  DesignerDeviceName = 'iPhone'
+  DesignerOrientation = 0
+  object ListView1: TListView
+    ItemAppearanceClassName = 'TListItemRightDetailAppearance'
+    ItemEditAppearanceClassName = 'TListItemRightDetailDeleteAppearance'
+    HeaderAppearanceClassName = 'TListHeaderObjects'
+    FooterAppearanceClassName = 'TListHeaderObjects'
+    EditModeOptions = [DisallowSelection, HideSelection, ClearWhenStart]
+    EditMode = False
+    Height = 329.000000000000000000
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    TabOrder = 0
+    Width = 297.000000000000000000
+  end
+  object Button1: TButton
+    Height = 44.000000000000000000
+    Position.X = 96.000000000000000000
+    Position.Y = 352.000000000000000000
+    TabOrder = 1
+    Text = 'Open'
+    Trimming = ttCharacter
+    Width = 73.000000000000000000
+    OnClick = Button1Click
+  end
+  object test_sqlite: TSQLConnection
+    ConnectionName = 'test_sqlite'
+    DriverName = 'SQLite'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverName=SQLite'
+      'DriverUnit=Data.DbxSqlite'
+      
+        'DriverPackageLoader=TDBXSqliteDriverLoader,DBXSqliteDriver170.bp' +
+        'l'
+      
+        'MetaDataPackageLoader=TDBXSqliteMetaDataCommandFactory,DbxSqlite' +
+        'Driver170.bpl'
+      'FailIfMissing=False'
+      'Database=D:\dev\mobile_study\money.sqlite')
+    BeforeConnect = test_sqliteBeforeConnect
+    Left = 22
+    Top = 395
+  end
+  object common: TSQLDataSet
+    CommandText = 'common'
+    CommandType = ctTable
+    DbxCommandType = 'Dbx.Table'
+    MaxBlobSize = 1
+    Params = <>
+    SQLConnection = test_sqlite
+    Left = 78
+    Top = 395
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = common
+    ScopeMappings = <>
+    Left = 144
+    Top = 224
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 52
+    Top = 245
+    object LinkFillControlToField1: TLinkFillControlToField
+      Category = 'Quick Bindings'
+      Track = True
+      FillDataSource = BindSourceDB1
+      FillDisplayFieldName = 'cm_date'
+      AutoFill = True
+      BufferCount = -1
+      AutoBufferCount = False
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+    object LinkFillControlToField2: TLinkFillControlToField
+      Category = 'Quick Bindings'
+      Track = True
+      FillDataSource = BindSourceDB1
+      FillDisplayFieldName = 'cm_date'
+      AutoFill = True
+      BufferCount = -1
+      AutoBufferCount = False
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+    object LinkFillControlToField3: TLinkFillControlToField
+      Category = 'Quick Bindings'
+      Control = ListView1
+      Track = True
+      FillDataSource = BindSourceDB1
+      FillDisplayFieldName = 'cm_date'
+      AutoFill = True
+      BufferCount = -1
+      AutoBufferCount = False
+      FillExpressions = <
+        item
+          SourceMemberName = 'cm_money'
+          ControlMemberName = 'Detail'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+  end
+end

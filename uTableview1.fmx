@@ -59,6 +59,7 @@ object Form1: TForm1
             DefaultItemStyles.GroupFooterStyle = ''
             object ListBoxGroupHeader1: TListBoxGroupHeader
               Height = 23.000000000000000000
+              StyleLookup = 'listboxitemnodetail'
               Text = 'ListBoxGroupHeader1'
               Width = 320.000000000000000000
             end
