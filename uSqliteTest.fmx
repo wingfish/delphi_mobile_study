@@ -1,4 +1,4 @@
-object Form8: TForm8
+object frmSqliteTest: TfrmSqliteTest
   Left = 0
   Top = 0
   Caption = 'Form8'
@@ -19,21 +19,30 @@ object Form8: TForm8
     FooterAppearanceClassName = 'TListHeaderObjects'
     EditModeOptions = [DisallowSelection, HideSelection, ClearWhenStart]
     EditMode = False
+    Align = alTop
     Height = 329.000000000000000000
-    Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
     TabOrder = 0
-    Width = 297.000000000000000000
+    Width = 320.000000000000000000
   end
-  object Button1: TButton
+  object btnOpenSqlite: TButton
     Height = 44.000000000000000000
-    Position.X = 96.000000000000000000
+    Position.X = 208.000000000000000000
     Position.Y = 352.000000000000000000
     TabOrder = 1
     Text = 'Open'
     Trimming = ttCharacter
+    Width = 89.000000000000000000
+    OnClick = btnOpenSqliteClick
+  end
+  object btnAddRecord: TButton
+    Height = 44.000000000000000000
+    Position.X = 120.000000000000000000
+    Position.Y = 352.000000000000000000
+    TabOrder = 2
+    Text = 'Add'
+    Trimming = ttCharacter
     Width = 73.000000000000000000
-    OnClick = Button1Click
+    OnClick = btnAddRecordClick
   end
   object test_sqlite: TSQLConnection
     ConnectionName = 'test_sqlite'
@@ -67,14 +76,14 @@ object Form8: TForm8
   object BindSourceDB1: TBindSourceDB
     DataSet = common
     ScopeMappings = <>
-    Left = 144
-    Top = 224
+    Left = 152
+    Top = 408
   end
   object BindingsList1: TBindingsList
     Methods = <>
     OutputConverters = <>
-    Left = 52
-    Top = 245
+    Left = 228
+    Top = 413
     object LinkFillControlToField1: TLinkFillControlToField
       Category = 'Quick Bindings'
       Track = True
@@ -116,5 +125,19 @@ object Form8: TForm8
       FillHeaderExpressions = <>
       FillBreakGroups = <>
     end
+  end
+  object SQLQueryInsert: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftFloat
+        Name = 'cm_money'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'INSERT INTO common(cm_money) VALUES(:cm_money)')
+    SQLConnection = test_sqlite
+    Left = 32
+    Top = 336
   end
 end

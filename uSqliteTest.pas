@@ -12,7 +12,7 @@ uses
   FMX.ListView;
 
 type
-  TForm8 = class(TForm)
+  TfrmSqliteTest = class(TForm)
     test_sqlite: TSQLConnection;
     common: TSQLDataSet;
     BindSourceDB1: TBindSourceDB;
@@ -21,9 +21,12 @@ type
     LinkFillControlToField2: TLinkFillControlToField;
     ListView1: TListView;
     LinkFillControlToField3: TLinkFillControlToField;
-    Button1: TButton;
+    btnOpenSqlite: TButton;
+    SQLQueryInsert: TSQLQuery;
+    btnAddRecord: TButton;
     procedure test_sqliteBeforeConnect(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnOpenSqliteClick(Sender: TObject);
+    procedure btnAddRecordClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,22 +34,31 @@ type
   end;
 
 var
-  Form8: TForm8;
+  frmSqliteTest: TfrmSqliteTest;
 
 implementation
 
+uses System.Math;
+
 {$R *.fmx}
 
-procedure TForm8.Button1Click(Sender: TObject);
+procedure TfrmSqliteTest.btnOpenSqliteClick(Sender: TObject);
 begin
   test_sqlite.Open;
   common.Open;
 end;
 
-procedure TForm8.test_sqliteBeforeConnect(Sender: TObject);
+procedure TfrmSqliteTest.btnAddRecordClick(Sender: TObject);
+begin
+  SqlQueryInsert.ParamByName('cm_money').AsFloat:=RandomRange(100,2000);
+  SqlQueryInsert.ExecSQL();
+  common.Refresh;
+end;
+
+procedure TfrmSqliteTest.test_sqliteBeforeConnect(Sender: TObject);
 begin
 {$IFDEF IOS}
-  test_sqlite.Params.Values['Database'] := GetHomePath + PathDelim + 'db' +
+  test_sqlite.Params.Values['Database'] := GetHomePath + PathDelim + 'Documents' +
     PathDelim + 'money.sqlite'
 {$ENDIF}
 end;
